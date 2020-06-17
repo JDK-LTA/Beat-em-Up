@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e9255f928967943bb54ed0f1aa41c2, type: 3}
+  m_Name: ItemList
+  m_EditorClassIdentifier: 
+  itemList:
+  - id: 0
+    type: 0
+    immediateModifier: 10
+    timeToExpire: 0
+    poisonDamage: 0
+    timeBetweenWaves: 0
+    pemGO: {fileID: 0}
+  - id: 1
+    type: 0
+    immediateModifier: 5
+    timeToExpire: 0
+    poisonDamage: 0
+    timeBetweenWaves: 0
+    pemGO: {fileID: 0}
+  - id: 2
+    type: 2
+    immediateModifier: 0
+    timeToExpire: 5
+    poisonDamage: 0
+    timeBetweenWaves: 0
+    pemGO: {fileID: 0}
+  - id: 3
+    type: 4
+    immediateModifier: 0
+    timeToExpire: 5
+    poisonDamage: 5
+    timeBetweenWaves: 0.7
+    pemGO: {fileID: 0}
+  - id: 3
+    type: 4
+    immediateModifier: 0
+    timeToExpire: 5
+    poisonDamage: 5
+    timeBetweenWaves: 0.7
+    pemGO: {fileID: 0}
