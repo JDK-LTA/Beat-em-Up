@@ -41,10 +41,10 @@ MonoBehaviour:
     poisonDamage: 5
     timeBetweenWaves: 0.7
     pemGO: {fileID: 0}
-  - id: 3
+  - id: 4
     type: 4
     immediateModifier: 0
-    timeToExpire: 5
-    poisonDamage: 5
-    timeBetweenWaves: 0.7
+    timeToExpire: 2.5
+    poisonDamage: 1
+    timeBetweenWaves: 0.5
     pemGO: {fileID: 0}

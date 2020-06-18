@@ -17,7 +17,7 @@ public class WaveManager2 : Singleton<WaveManager2>
     public List<WaveInfo> Waves { get => _waves; }
     public int CurrentWave { get => _currentWave; }
 
-    bool isSpawning = true, debugStopSpawn = false, roundsStarted = false, endWaveTimerOn = false;
+    bool isSpawning = true, debugStopSpawn = true, roundsStarted = false, endWaveTimerOn = false;
     float tPerSpawn = 0, tPerEndWave = 0;
     private EnemyBase2 lastEnemySpawned = null;
 

@@ -13,28 +13,34 @@ MonoBehaviour:
   m_Name: WaveList2
   m_EditorClassIdentifier: 
   waves:
+  - totalDifficulty: 20
+    enemiesThisWave:
+    - {fileID: 0}
+    cdBetweenEnemiesSpawn: 0
+    nOfEnemyDiffThisWave: 60
+    positionsToSpawn:
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
-    nOfEnemiesThisWave: 0
+    nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
-    nOfEnemiesThisWave: 0
+    nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
-    nOfEnemiesThisWave: 0
+    nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
-    nOfEnemiesThisWave: 0
-    positionsToSpawn: []
-  - totalDifficulty: 0
-    enemiesThisWave: []
-    cdBetweenEnemiesSpawn: 0
-    nOfEnemiesThisWave: 0
+    nOfEnemyDiffThisWave: 0
     positionsToSpawn: []

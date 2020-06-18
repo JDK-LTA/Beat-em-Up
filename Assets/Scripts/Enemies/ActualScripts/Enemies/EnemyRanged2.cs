@@ -6,6 +6,7 @@ public class EnemyRanged2 : EnemyBase2
 {
     [SerializeField] GameObject arrow;
     [SerializeField] Transform shootingPos;
+    [SerializeField] float chanceToPoisonArrow;
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +16,13 @@ public class EnemyRanged2 : EnemyBase2
     {
         base.Attack();
         GameObject go = Instantiate(arrow, shootingPos.position, shootingPos.rotation);
-        go.GetComponent<Arrow>().InitDmg(attackDmg);
+
+        bool poison = false;
+        if (Random.Range(0, 100) < chanceToPoisonArrow)
+        {
+            poison = true;
+        }
+
+        go.GetComponent<Arrow>().InitDmg(attackDmg, poison);
     }
 }

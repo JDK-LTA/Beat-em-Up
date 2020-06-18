@@ -28,7 +28,9 @@ public class EnemyBase2 : MonoBehaviour
     [SerializeField]
     protected float speed = 5;
     [SerializeField]
-    protected float stoppingDistance = 3;
+    protected float stoppingDistanceX = 2f;
+    [SerializeField]
+    protected float stoppingDistanceY = 0.5f;
     [SerializeField]
     protected float chanceForItem = 5;
     [SerializeField]
@@ -43,7 +45,8 @@ public class EnemyBase2 : MonoBehaviour
     public float RangeToChase { get => rangeToChase; set => rangeToChase = value; }
     public float CdAttack { get => cdAttack; set => cdAttack = value; }
     public float Speed { get => speed; set => speed = value; }
-    public float StoppingDistance { get => stoppingDistance; set => stoppingDistance = value; }
+    public float StoppingDistanceX { get => stoppingDistanceX; set => stoppingDistanceX = value; }
+    public float StoppingDistanceY { get => stoppingDistanceY; set => stoppingDistanceY = value; }
     public int Difficulty { get => difficulty; set => difficulty = value; }
 
     protected virtual void Awake()
@@ -109,19 +112,13 @@ public class EnemyBase2 : MonoBehaviour
 
     protected virtual void GoTowardsGoal(Vector3 goal)
     {
-        if (Vector3.Distance(transform.position, goal) > stoppingDistance)
+        Vector3 dir = goal - transform.position;
+        
+        if (Mathf.Abs(goal.x - transform.position.x) > stoppingDistanceX || Mathf.Abs(goal.y - transform.position.y) > stoppingDistanceY)
         {
             readyToAttack = false;
 
-            Vector3 dir = goal - transform.position;
             dir.Normalize();
-
-            float x = Mathf.Abs(transform.localScale.x);
-            if (dir.x < 0)
-            {
-                x = -x;
-            }
-            transform.localScale = new Vector2(x, transform.localScale.y);
 
             rbComp.MovePosition(transform.position + (dir * speed * Time.deltaTime));
         }
@@ -129,6 +126,13 @@ public class EnemyBase2 : MonoBehaviour
         {
             readyToAttack = true;
         }
+
+        float x = Mathf.Abs(transform.localScale.x);
+        if (dir.x < 0)
+        {
+            x = -x;
+        }
+        transform.localScale = new Vector2(x, transform.localScale.y);
     }
 
     protected virtual void Attack()
