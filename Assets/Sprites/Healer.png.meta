@@ -1,0 +1,725 @@
+fileFormatVersion: 2
+guid: fb12f1d95b0f9104c8b2f4a66f760c65
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3152180383845805149
+    second: Healer_0
+  - first:
+      213: -1577015749045243486
+    second: Healer_1
+  - first:
+      213: -4539535395494678419
+    second: Healer_2
+  - first:
+      213: -4618723040967708213
+    second: Healer_3
+  - first:
+      213: 4355858077975703455
+    second: Healer_4
+  - first:
+      213: 7778997339488307486
+    second: Healer_5
+  - first:
+      213: -140563895515726890
+    second: Healer_6
+  - first:
+      213: 7776770602236598357
+    second: Healer_7
+  - first:
+      213: 3526433916112789483
+    second: Healer_8
+  - first:
+      213: -3972500236222457797
+    second: Healer_9
+  - first:
+      213: 2571423823623123834
+    second: Healer_10
+  - first:
+      213: 2190255405319573837
+    second: Healer_11
+  - first:
+      213: 272183384191684339
+    second: Healer_12
+  - first:
+      213: 2140280226796779881
+    second: Healer_13
+  - first:
+      213: 3859999631414049940
+    second: Healer_14
+  - first:
+      213: 2736262904762345773
+    second: Healer_15
+  - first:
+      213: -8965184075536171033
+    second: Healer_16
+  - first:
+      213: -6316051089662312998
+    second: Healer_17
+  - first:
+      213: 6232208502142945669
+    second: Healer_18
+  - first:
+      213: 1988771135974547019
+    second: Healer_19
+  - first:
+      213: -6308642056370946638
+    second: Healer_20
+  - first:
+      213: 9117991799629843630
+    second: Healer_21
+  - first:
+      213: -325709555292581525
+    second: Healer_22
+  - first:
+      213: -6223519267962318665
+    second: Healer_23
+  - first:
+      213: -2118876214317595387
+    second: Healer_24
+  - first:
+      213: -1139330250430250938
+    second: Healer_25
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Healer_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 357
+        width: 60
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba79e2826a309f24c8fcd62d57879837
+      internalID: -3152180383845805149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 358
+        width: 50
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f9f0e2b32c7c245bd0d83ff239f911
+      internalID: -1577015749045243486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 358
+        width: 51
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db03b332c77d74459a87100fa1747c8
+      internalID: -4539535395494678419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 358
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de0bf2a192959f41ac6cb2830095ea5
+      internalID: -4618723040967708213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 357
+        width: 49
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8693cd0d0bcd6a747a30da626e2360e1
+      internalID: 4355858077975703455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_5
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 357
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94af70fe3e892b141b009dac1b24a4a6
+      internalID: 7778997339488307486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_6
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 357
+        width: 51
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1573c272ca71e9346b2920072509bcb6
+      internalID: -140563895515726890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_7
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 357
+        width: 50
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b88a5e2538f99341835095c72d14ff1
+      internalID: 7776770602236598357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 295
+        width: 69
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61b48a27d1a33040907088f9f1e113f
+      internalID: 3526433916112789483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_9
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 281
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bca8112150b41b41b0d097aa84f3997
+      internalID: -3972500236222457797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_10
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 286
+        width: 75
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d689e812cbee24e93e03394efba841
+      internalID: 2571423823623123834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_11
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 286
+        width: 83
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd17501dcf3de54c8db8acdcb9d08ad
+      internalID: 2190255405319573837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_12
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 222
+        width: 55
+        height: 50
+      alignment: 9
+      pivot: {x: 0.49999994, y: 0.6977893}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec6badd1bbf8f1c4baeafd3824e5ab8a
+      internalID: 272183384191684339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_13
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 218
+        width: 53
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ddc51af59198fb4ebb96f75ca888539
+      internalID: 2140280226796779881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_14
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 222
+        width: 68
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2626b2bf78db9a04095bb3463bc5970a
+      internalID: 3859999631414049940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_15
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 218
+        width: 67
+        height: 42
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.82376206}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feb18a3434b9a624bae51b7e0f78f949
+      internalID: 2736262904762345773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_16
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 216
+        width: 77
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 1.1769569}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1075de0b5b294458921493c22ab795
+      internalID: -8965184075536171033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_17
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 167
+        width: 69
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fbc2f4b0ea922b4685d73f91d42c5eb
+      internalID: -6316051089662312998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_18
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 164
+        width: 56
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ff7fede880caa242afda7e6e624d33c
+      internalID: 6232208502142945669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_19
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 152
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 384cee2eba9e6b748854eb81e963ba05
+      internalID: 1988771135974547019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 89
+        width: 79
+        height: 73
+      alignment: 9
+      pivot: {x: 0.6017114, y: 0.440731}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98e7887cea3551a4f81c8b587ab4f4a1
+      internalID: -6308642056370946638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_21
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 89
+        width: 90
+        height: 51
+      alignment: 9
+      pivot: {x: 0.548074, y: 0.621194}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3490f5479f419b42b0e97cb6ba909c5
+      internalID: 9117991799629843630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_22
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 89
+        width: 73
+        height: 51
+      alignment: 9
+      pivot: {x: 0.53386784, y: 0.53635794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feffcd8f27049d9438fd81ca8a82012c
+      internalID: -325709555292581525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_23
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 5
+        width: 76
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5, y: 0.41170096}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06dd770773ebfc64c9924bde95f1c34e
+      internalID: -6223519267962318665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_24
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 5
+        width: 58
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7dde1136281f3544b4dbc03c299bfff
+      internalID: -2118876214317595387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Healer_25
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 6
+        width: 58
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76923497e4427c4ca93d491177af968
+      internalID: -1139330250430250938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c6c71f36378caa34d99178214c8184be
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
