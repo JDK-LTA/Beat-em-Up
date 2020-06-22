@@ -7,6 +7,13 @@ public class EnemyHealer2 : EnemyRanged2
     bool healing = true;
     [SerializeField] float amountToHeal;
 
+    protected override void Start()
+    {
+        base.Start();
+        countAsChasing = false;
+        //WHEN ATTACKING IT COUNTS AS CHASING
+    }
+
     protected override void Attack()
     {
         if (healing)

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemiesManager : Singleton<EnemiesManager>
 {
-    private List<EnemyBase2> createdEnemies;
+    [SerializeField] private List<EnemyBase2> createdEnemies;
+    [SerializeField] private int currDiffChasing = 0;
+    [SerializeField] private int maxDiffChasing = 6;
     public List<EnemyBase2> CreatedEnemies { get => createdEnemies; set => createdEnemies = value; }
+    public int CurrDiffChasing { get => currDiffChasing; set => currDiffChasing = value; }
+    public int MaxDiffChasing { get => maxDiffChasing; set => maxDiffChasing = value; }
 
     public List<EnemyBase2> GetEnemiesByDistance(Vector3 from)
     {

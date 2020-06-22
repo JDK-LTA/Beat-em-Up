@@ -10,7 +10,7 @@ public class WaveManager2 : Singleton<WaveManager2>
     private List<EnemyBase2> _enemiesThisWave;
     private List<Vector3> _positionsToSpawn;
     private int _waveDifficulty;
-    private int _currentDifficulty;
+    [SerializeField] private int _currentDifficulty;
     private int _nOfEnemyDiffThisWave;
     private float _cdPerSpawn;
 
@@ -28,6 +28,7 @@ public class WaveManager2 : Singleton<WaveManager2>
     public void Init()
     {
         roundsStarted = true;
+        BeginNextWave();
     }
 
     private void UpdateWave()
@@ -40,6 +41,8 @@ public class WaveManager2 : Singleton<WaveManager2>
 
         _waveDifficulty = _waves[_currentWave].TotalDifficulty;
         _currentDifficulty = _waves[_currentWave].TotalDifficulty;
+
+        EnemiesManager.Instance.MaxDiffChasing = _waves[_currentWave].MaxDiffChasing;
     }
     private void AboutToEndWave()
     {
@@ -62,6 +65,10 @@ public class WaveManager2 : Singleton<WaveManager2>
         if (Input.GetKeyDown(KeyCode.O))
         {
             debugStopSpawn = !debugStopSpawn;
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Init();
         }
 
         if (roundsStarted)

@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
 
     //PLAYER STATS
     [SerializeField] private float damageBase;
-    [SerializeField] private float blockBase;
+    [Tooltip("PERCENTAGE")]
+    [SerializeField] private float blockBase = 50;
 
     //JUMPING
     [SerializeField] private float jumpForce = 5;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
 
     private bool isUp = false;
     private bool isJumping = false;
+    private bool isBlocking = false;
 
     [SerializeField] private Transform topLimit = null;
     [SerializeField] private Transform bottomLimit = null;
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
         ((InputManager)InputManager.Instance).OnPlayerVertical += MoveVertical;
         ((InputManager)InputManager.Instance).OnPlayerAttack += Attack;
         ((InputManager)InputManager.Instance).OnPlayerBlock += Block;
+        ((InputManager)InputManager.Instance).OnPlayerStopBlocking += StopBlocking;
         ((InputManager)InputManager.Instance).OnPlayerJump += Jump;
 
         feet = transform.Find("Feet");
@@ -95,7 +98,11 @@ public class Player : MonoBehaviour
     }
     private void Block()
     {
-
+        isBlocking = true;
+    }
+    private void StopBlocking()
+    {
+        isBlocking = false;
     }
 
 
@@ -150,7 +157,7 @@ public class Player : MonoBehaviour
             }
         }
         //
-        else if(horizontalAux != 0 || verticalAux != 0)
+        else if (horizontalAux != 0 || verticalAux != 0)
         {
             transform.Translate(horizontalAux, verticalAux, 0);
         }
@@ -167,6 +174,14 @@ public class Player : MonoBehaviour
 
     public void ChangeHp(float aux)
     {
+        if (aux < 0)
+        {
+            if (isBlocking)
+            {
+                aux *= blockBase / 100;
+            }
+        }
+
         hpCurrent += aux;
     }
 

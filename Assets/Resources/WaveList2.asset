@@ -13,34 +13,35 @@ MonoBehaviour:
   m_Name: WaveList2
   m_EditorClassIdentifier: 
   waves:
-  - totalDifficulty: 20
+  - totalDifficulty: 5
     enemiesThisWave:
-    - {fileID: 0}
-    cdBetweenEnemiesSpawn: 0
+    - {fileID: 3094784750256116688, guid: 42b8baca7a65cb64eaaed09b82ada97c, type: 3}
+    cdBetweenEnemiesSpawn: 3
     nOfEnemyDiffThisWave: 60
     positionsToSpawn:
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
-    - {x: 0, y: 0, z: 0}
+    - {x: 5.5, y: 0, z: 0}
+    maxDiffChasing: 3
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
     nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
+    maxDiffChasing: 0
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
     nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
+    maxDiffChasing: 0
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
     nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
+    maxDiffChasing: 0
   - totalDifficulty: 0
     enemiesThisWave: []
     cdBetweenEnemiesSpawn: 0
     nOfEnemyDiffThisWave: 0
     positionsToSpawn: []
+    maxDiffChasing: 0

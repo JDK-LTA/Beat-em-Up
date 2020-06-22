@@ -10,10 +10,12 @@ public class WaveInfo
     [SerializeField] private float cdBetweenEnemiesSpawn = 0.75f;
     [SerializeField] private int nOfEnemyDiffThisWave;
     [SerializeField] private List<Vector3> positionsToSpawn;
+    [SerializeField] private int maxDiffChasing;
 
     public int TotalDifficulty { get => totalDifficulty; set => totalDifficulty = value; }
     public List<EnemyBase2> EnemiesThisWave { get => enemiesThisWave; set => enemiesThisWave = value; }
     public List<Vector3> PositionsToSpawn { get => positionsToSpawn; set => positionsToSpawn = value; }
     public int NOfEnemyDiffThisWave { get => nOfEnemyDiffThisWave; set => nOfEnemyDiffThisWave = value; }
     public float CdBetweenEnemiesSpawn { get => cdBetweenEnemiesSpawn; set => cdBetweenEnemiesSpawn = value; }
+    public int MaxDiffChasing { get => maxDiffChasing; set => maxDiffChasing = value; }
 }

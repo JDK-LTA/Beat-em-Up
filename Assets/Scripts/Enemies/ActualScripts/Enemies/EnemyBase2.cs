@@ -12,9 +12,10 @@ public class EnemyBase2 : MonoBehaviour
     [SerializeField] GameObject itemPrefab;
 
     protected bool readyToAttack = false;
+    protected bool countAsChasing = true;
     private float t = 0;
 
-    protected bool goingForPlayer = true;
+    protected bool goingForPlayer = false;
     [SerializeField]
     protected float maxHp = 100;
     [SerializeField]
@@ -58,7 +59,8 @@ public class EnemyBase2 : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        player = GameManager.Instance.players[0].transform;
+        //player = GameManager.Instance.players[0].transform;
+        player = FindObjectOfType<Player>().transform;
     }
     // Update is called once per frame
     protected virtual void Update()
@@ -68,13 +70,24 @@ public class EnemyBase2 : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) > rangeToChase)
             {
                 goingForPlayer = false;
+
+                if (countAsChasing)
+                {
+                    EnemiesManager.Instance.CurrDiffChasing -= difficulty;
+                }
             }
         }
         else
         {
-            if (Vector3.Distance(transform.position, player.position) < rangeToChase)
+            if (EnemiesManager.Instance.CurrDiffChasing < EnemiesManager.Instance.MaxDiffChasing 
+                && Vector3.Distance(transform.position, player.position) < rangeToChase)
             {
                 goingForPlayer = true;
+
+                if (countAsChasing)
+                {
+                    EnemiesManager.Instance.CurrDiffChasing += difficulty;
+                }
             }
         }
 
@@ -113,17 +126,20 @@ public class EnemyBase2 : MonoBehaviour
     protected virtual void GoTowardsGoal(Vector3 goal)
     {
         Vector3 dir = goal - transform.position;
-        
+
         if (Mathf.Abs(goal.x - transform.position.x) > stoppingDistanceX || Mathf.Abs(goal.y - transform.position.y) > stoppingDistanceY)
         {
             readyToAttack = false;
 
             dir.Normalize();
 
+            animComp.SetBool("Walking", true);
+
             rbComp.MovePosition(transform.position + (dir * speed * Time.deltaTime));
         }
         else
         {
+            animComp.SetBool("Walking", false);
             readyToAttack = true;
         }
 
@@ -137,7 +153,7 @@ public class EnemyBase2 : MonoBehaviour
 
     protected virtual void Attack()
     {
-
+        animComp.SetTrigger("Attack");
     }
 
     public void ChangeHp(float num)

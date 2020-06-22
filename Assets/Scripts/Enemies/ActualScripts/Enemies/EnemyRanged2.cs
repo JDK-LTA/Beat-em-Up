@@ -15,6 +15,10 @@ public class EnemyRanged2 : EnemyBase2
     protected override void Attack()
     {
         base.Attack();
+    }
+
+    private void ShootArrow()
+    {
         GameObject go = Instantiate(arrow, shootingPos.position, shootingPos.rotation);
 
         bool poison = false;

@@ -8,6 +8,9 @@ public class Arrow : MonoBehaviour
     private float dmg = 1f;
     private bool poisonEffect = false;
     ItemIdInScene itemId;
+
+    [SerializeField] Sprite poisonSprite;
+
     private void Start()
     {
         Player player = FindObjectOfType<Player>();
@@ -20,6 +23,7 @@ public class Arrow : MonoBehaviour
         dmg = a;
         if (poison)
         {
+            GetComponent<SpriteRenderer>().sprite = poisonSprite;
             itemId = gameObject.AddComponent<ItemIdInScene>();
             itemId.Id = 4;
             poisonEffect = true;

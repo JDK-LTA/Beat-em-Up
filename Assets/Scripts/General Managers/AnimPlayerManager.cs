@@ -9,6 +9,8 @@ public class AnimPlayerManager : AnimationManager
     private float initXScale;
     Player m_player;
 
+    private bool isJumping = false;
+
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
@@ -41,7 +43,8 @@ public class AnimPlayerManager : AnimationManager
     {
         if (axis == 0)
         {
-            m_animator.ResetTrigger("Run");
+            m_animator.SetBool("Run", false);
+            //m_animator.ResetTrigger("Run");
             m_animator.SetTrigger("Idle");
             //Debug.Log("Idle");
         }
@@ -49,7 +52,8 @@ public class AnimPlayerManager : AnimationManager
         {
             transform.localScale = new Vector3(initXScale * axis, transform.localScale.y, transform.localScale.z);
             //Debug.Log("Run");
-            m_animator.SetTrigger("Run");
+            m_animator.SetBool("Run", true);
+            //m_animator.SetTrigger("Run");
         }
 
     }
@@ -75,6 +79,14 @@ public class AnimPlayerManager : AnimationManager
     //COMO HACER PARA SEPARAR EL INICIO, EL MEDIO Y EL FINAL DEL SALTO CON SINGLETON. PLAYER INICIA EVENTOS? BUSCO EL RIGIDBODY DESDE AQUI? UN COLLIDER EN LOS PIES?
     protected override void Jump()
     {
-        m_animator.SetTrigger("Jump");
+        if (!isJumping)
+        {
+            m_animator.SetTrigger("Jump");
+            isJumping = true;
+        }
+    }
+    private void SetIsJumpingFalse()
+    {
+        isJumping = false;
     }
 }
