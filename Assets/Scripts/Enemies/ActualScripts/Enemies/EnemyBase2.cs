@@ -13,6 +13,7 @@ public class EnemyBase2 : MonoBehaviour
 
     protected bool readyToAttack = false;
     protected bool countAsChasing = true;
+    protected bool dead = false;
     private float t = 0;
 
     protected bool goingForPlayer = false;
@@ -79,7 +80,7 @@ public class EnemyBase2 : MonoBehaviour
         }
         else
         {
-            if (EnemiesManager.Instance.CurrDiffChasing < EnemiesManager.Instance.MaxDiffChasing 
+            if (EnemiesManager.Instance.CurrDiffChasing < EnemiesManager.Instance.MaxDiffChasing
                 && Vector3.Distance(transform.position, player.position) < rangeToChase)
             {
                 goingForPlayer = true;
@@ -164,11 +165,19 @@ public class EnemyBase2 : MonoBehaviour
         {
             Die();
         }
+        else if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
     }
 
     protected void Die()
     {
-        animComp.SetTrigger("Die");
+        if (!dead)
+        {
+            dead = true;
+            animComp.SetTrigger("Die");
+        }
     }
     protected virtual void DeathBehaviour()
     {

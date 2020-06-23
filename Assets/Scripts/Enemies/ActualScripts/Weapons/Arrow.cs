@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    [SerializeField] float speed = 3f;
-    private float dmg = 1f;
-    private bool poisonEffect = false;
+    [SerializeField] protected float speed = 3f;
+    protected float dmg = 1f;
+    protected bool poisonEffect = false;
     ItemIdInScene itemId;
 
     [SerializeField] Sprite poisonSprite;
 
-    private void Start()
+    protected void Start()
     {
         Player player = FindObjectOfType<Player>();
         Vector3 dir = /*GameManager.Instance.players[0]*/player.transform.position - transform.position;
@@ -30,12 +30,21 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void Update()
+    float timeToSelfDestroy = 5f;
+    float t = 0;
+
+    protected void Update()
     {
         transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
+
+        t += Time.deltaTime;
+        if (t > timeToSelfDestroy)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
         if (player != null)

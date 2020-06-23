@@ -13,8 +13,19 @@ public class EnemiesManager : Singleton<EnemiesManager>
 
     public List<EnemyBase2> GetEnemiesByDistance(Vector3 from)
     {
-        List<EnemyBase2> enemies = createdEnemies;
+        List<EnemyBase2> enemies = new List<EnemyBase2>(createdEnemies);
+
         enemies.Sort(delegate (EnemyBase2 e1, EnemyBase2 e2) { return Vector3.Distance(from, e1.transform.position).CompareTo(Vector3.Distance(from, e2.transform.position)); });
+
+        return enemies;
+    }
+    public List<EnemyBase2> GetEnemiesByDistance(Vector3 from, EnemyBase2 excluding)
+    {
+        List<EnemyBase2> enemies = new List<EnemyBase2>(createdEnemies);
+        enemies.Remove(excluding);
+
+        enemies.Sort(delegate (EnemyBase2 e1, EnemyBase2 e2) { return Vector3.Distance(from, e1.transform.position).CompareTo(Vector3.Distance(from, e2.transform.position)); });
+
         return enemies;
     }
     public float GetNOfNonHealers()
@@ -23,7 +34,12 @@ public class EnemiesManager : Singleton<EnemiesManager>
 
         for (int i = 0; i < createdEnemies.Count; i++)
         {
-            if (!createdEnemies[i].GetComponent<EnemyHealer2>())
+            EnemyHealer2 eh = createdEnemies[i].GetComponent<EnemyHealer2>();
+            if (!eh)
+            {
+                nh++;
+            }
+            else if (!eh.Healing)
             {
                 nh++;
             }
@@ -37,9 +53,13 @@ public class EnemiesManager : Singleton<EnemiesManager>
 
         for (int i = 0; i < createdEnemies.Count; i++)
         {
-            if (createdEnemies[i].GetComponent<EnemyHealer2>())
+            EnemyHealer2 eh = createdEnemies[i].GetComponent<EnemyHealer2>();
+            if (eh)
             {
-                nh++;
+                if (eh.Healing)
+                {
+                    nh++;
+                }
             }
         }
 
@@ -47,7 +67,16 @@ public class EnemiesManager : Singleton<EnemiesManager>
     }
     public List<EnemyBase2> GetEnemiesByHp()
     {
-        List<EnemyBase2> enemies = createdEnemies;
+        List<EnemyBase2> enemies = new List<EnemyBase2>(createdEnemies);
+
+        enemies.Sort(delegate (EnemyBase2 e1, EnemyBase2 e2) { return e1.CurrentHp.CompareTo(e2.CurrentHp); });
+
+        return enemies;
+    }
+    public List<EnemyBase2> GetEnemiesByHp(EnemyBase2 excluding)
+    {
+        List<EnemyBase2> enemies = new List<EnemyBase2>(createdEnemies);
+        enemies.Remove(excluding);
 
         enemies.Sort(delegate (EnemyBase2 e1, EnemyBase2 e2) { return e1.CurrentHp.CompareTo(e2.CurrentHp); });
 

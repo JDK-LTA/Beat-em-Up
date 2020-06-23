@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     //PLAYER STATS
     [SerializeField] private float damageBase;
+    [SerializeField] private float fireDmg;
     [Tooltip("PERCENTAGE")]
     [SerializeField] private float blockBase = 50;
 
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform bottomLimit = null;
 
     private Transform feet;
+    private PlayerSword sword;
+    private PlayerFire fire;
 
     //MOVEMENT INTERNAL VARIABLES
     private float horizontalAux = 0;
@@ -56,17 +59,24 @@ public class Player : MonoBehaviour
     public float DamageBase { get => damageBase; set => damageBase = value; }
 
     SpriteRenderer spriteRenderer;
+    GameObject itemObject;
 
     private void Start()
     {
         ((InputManager)InputManager.Instance).OnPlayerHorizontal += MoveHorizontal;
         ((InputManager)InputManager.Instance).OnPlayerVertical += MoveVertical;
         ((InputManager)InputManager.Instance).OnPlayerAttack += Attack;
+        ((InputManager)InputManager.Instance).OnPlayerFire += Fire;
         ((InputManager)InputManager.Instance).OnPlayerBlock += Block;
         ((InputManager)InputManager.Instance).OnPlayerStopBlocking += StopBlocking;
         ((InputManager)InputManager.Instance).OnPlayerJump += Jump;
 
         feet = transform.Find("Feet");
+        sword = GetComponentInChildren<PlayerSword>(true);
+        fire = GetComponentInChildren<PlayerFire>(true);
+        
+        sword.InitDmg(damageBase);
+        fire.InitDmg(fireDmg);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -89,12 +99,17 @@ public class Player : MonoBehaviour
     {
         if (!IsOnItem)
         {
-
+            sword.gameObject.SetActive(true);
         }
         else
         {
             ((ItemManager)ItemManager.Instance).ApplyItem(this, id);
+            Destroy(itemObject);
         }
+    }
+    private void Fire()
+    {
+        fire.gameObject.SetActive(true);
     }
     private void Block()
     {
@@ -184,7 +199,15 @@ public class Player : MonoBehaviour
 
         hpCurrent += aux;
     }
-
+    public void ChangeDmg(float c)
+    {
+        damageBase += c;
+        sword.InitDmg(damageBase);
+    }
+    private void DeactivateSword()
+    {
+        sword.gameObject.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ItemIdInScene itemId = collision.GetComponent<ItemIdInScene>();
@@ -195,6 +218,8 @@ public class Player : MonoBehaviour
             {
                 isOnItem = true;
             }
+
+            itemObject = collision.gameObject;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -208,6 +233,8 @@ public class Player : MonoBehaviour
                 isOnItem = false;
                 id = -1;
             }
+
+            itemObject = null;
         }
     }
 }
