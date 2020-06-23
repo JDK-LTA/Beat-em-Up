@@ -9,13 +9,12 @@ public class OI_Invincibility : OverTimeItem
     protected override void EnterAction()
     {
         base.EnterAction();
-
-        m_player.IsInvincible = true;
+        m_player.SetInvincible(true);
     }
 
     protected override void ExitAction()
     {
-        m_player.IsInvincible = false;
+        m_player.SetInvincible(false);
         base.ExitAction();
     }
 }

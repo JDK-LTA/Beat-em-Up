@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Transform topLimit = null;
     [SerializeField] private Transform bottomLimit = null;
+    [SerializeField] private Transform leftLimit = null;
+    [SerializeField] private Transform rightLimit = null;
 
     private Transform feet;
     private PlayerSword sword;
@@ -74,7 +76,7 @@ public class Player : MonoBehaviour
         feet = transform.Find("Feet");
         sword = GetComponentInChildren<PlayerSword>(true);
         fire = GetComponentInChildren<PlayerFire>(true);
-        
+
         sword.InitDmg(damageBase);
         fire.InitDmg(fireDmg);
 
@@ -83,7 +85,26 @@ public class Player : MonoBehaviour
 
     private void MoveHorizontal(int axis)
     {
-        horizontalAux = XSpeed * axis * Time.deltaTime;
+        Vector3 auxPos = transform.position;
+        bool outOfLeftBound = auxPos.x < leftLimit.position.x;
+        bool outOfRightBound = auxPos.x > rightLimit.position.x;
+        if (!outOfLeftBound && !outOfRightBound)
+        {
+            horizontalAux = XSpeed * axis * Time.deltaTime;
+        }
+        else
+        {
+            horizontalAux = 0;
+            if (outOfLeftBound)
+            {
+                auxPos.x = leftLimit.position.x;
+            }
+            else if (outOfRightBound)
+            {
+                auxPos.x = rightLimit.position.x;
+            }
+            transform.position = auxPos;
+        }
     }
     private void MoveVertical(int axis)
     {
@@ -176,24 +197,24 @@ public class Player : MonoBehaviour
         {
             transform.Translate(horizontalAux, verticalAux, 0);
         }
+    }
 
-        if (IsInvincible)
-        {
-            spriteRenderer.color = Color.green;
-        }
-        else
-        {
-            spriteRenderer.color = Color.white;
-        }
+    public void SetInvincible(bool setter)
+    {
+        IsInvincible = setter;
+        spriteRenderer.color = setter ? Color.green : Color.white;
     }
 
     public void ChangeHp(float aux)
     {
         if (aux < 0)
         {
-            if (isBlocking)
+            if (!IsInvincible)
             {
-                aux *= blockBase / 100;
+                if (isBlocking)
+                {
+                    aux *= blockBase / 100;
+                }
             }
         }
 
