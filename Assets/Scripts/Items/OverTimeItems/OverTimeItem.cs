@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OverTimeItem : ItemParent
 {
+    protected float m_amountToChange = 0;
     protected float m_timeToExpire;
     private float counter;
     protected bool enterActionDone = false;
@@ -13,6 +14,16 @@ public class OverTimeItem : ItemParent
     {
         m_player = player;
         m_timeToExpire = timeToExpire;
+
+        AuxTimer.AuxUpdate += Update;
+
+        EnterAction();
+    }
+    public OverTimeItem (Player player, float timeToExpire, float amountToChange)
+    {
+        m_player = player;
+        m_timeToExpire = timeToExpire;
+        m_amountToChange = amountToChange;
 
         AuxTimer.AuxUpdate += Update;
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6142840753871003877}
   - component: {fileID: 6142840753871003876}
   m_Layer: 0
-  m_Name: EnemyRanged
+  m_Name: EnemyRangedPoison
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,20 +118,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5132976015914741748, guid: 04ba991d0b5fdd74faf78ec6626afc07,
     type: 3}
-  maxHp: 100
-  currentHp: 100
+  maxHp: 30
+  currentHp: 30
   attackDmg: 5
   rangeToChase: 9
-  cdAttack: 2
+  cdAttack: 3
   speed: 1.5
   stoppingDistanceX: 6
   stoppingDistanceY: 5
-  chanceForItem: 5
+  chanceForItem: 25
   itemIdsToSpawn: 02000000
   difficulty: 2
   arrow: {fileID: 305795274023414871, guid: b7b3ca70c19465a4c831c98c87497f9f, type: 3}
   shootingPos: {fileID: 6142840754583255201}
-  chanceToPoisonArrow: 15
+  chanceToSpecialArrow: 15
+  specialArrowId: 4
 --- !u!50 &6142840753871003877
 Rigidbody2D:
   serializedVersion: 4

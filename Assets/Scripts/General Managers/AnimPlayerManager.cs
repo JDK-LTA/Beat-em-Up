@@ -10,6 +10,10 @@ public class AnimPlayerManager : AnimationManager
     Player m_player;
 
     private bool isJumping = false;
+    private bool isFiring = false;
+    private bool isAttacking = false;
+    private bool isBlocking = false;
+    private bool isAirAttacking = false;
 
     private void Awake()
     {
@@ -24,6 +28,7 @@ public class AnimPlayerManager : AnimationManager
         ((InputManager)InputManager.Instance).OnPlayerBlock += Block;
         ((InputManager)InputManager.Instance).OnPlayerStopBlocking += StopBlocking;
         ((InputManager)InputManager.Instance).OnPlayerJump += Jump;
+        ((InputManager)InputManager.Instance).OnPlayerFire += Fire;
 
         initXScale = transform.localScale.x;
     }
@@ -41,52 +46,94 @@ public class AnimPlayerManager : AnimationManager
     //ASIGNAR EL MISMO MÉTODO A DOS EVENTOS?? BIEN O MAL? GENERA CONFLICTOS DE LLAMADAS?? CONTROL CON BOOL?
     protected override void Move(int axis)
     {
-        if (axis == 0)
+        if (m_player.CanMove)
         {
-            m_animator.SetBool("Run", false);
-            //m_animator.ResetTrigger("Run");
-            m_animator.SetTrigger("Idle");
-            //Debug.Log("Idle");
-        }
-        else
-        {
-            transform.localScale = new Vector3(initXScale * axis, transform.localScale.y, transform.localScale.z);
-            //Debug.Log("Run");
-            m_animator.SetBool("Run", true);
-            //m_animator.SetTrigger("Run");
+            if (axis == 0)
+            {
+                m_animator.SetBool("Run", false);
+                //m_animator.ResetTrigger("Run");
+                m_animator.SetTrigger("Idle");
+                //Debug.Log("Idle");
+            }
+            else
+            {
+                transform.localScale = new Vector3(initXScale * axis, transform.localScale.y, transform.localScale.z);
+                //Debug.Log("Run");
+                m_animator.SetBool("Run", true);
+                //m_animator.SetTrigger("Run");
+            }
         }
 
     }
 
     protected override void Attack()
     {
-        if (!m_player.IsOnItem)
+        if (!m_player.IsOnItem && !isAttacking)
         {
-            m_animator.SetTrigger("Attack");
+            Debug.Log("yikes");
+            if (!isJumping)
+            {
+                isAttacking = true;
+                m_animator.SetTrigger("Attack");
+            }
+            else
+            {
+                isAirAttacking = true;
+                m_animator.SetTrigger("JumpAttack");
+            }
         }
+    }
+    private void SetIsAttackingFalse()
+    {
+        isAttacking = false;
+        m_animator.ResetTrigger("Attack");
+    }
+    private void SetIsAirAttackingFalse()
+    {
+        isAirAttacking = false;
+        m_animator.ResetTrigger("JumpAttack");
+    }
+
+    protected void Fire()
+    {
+        if (!isAttacking && !isJumping && !isBlocking && !isFiring && !isAirAttacking)
+        {
+            isFiring = true;
+            m_animator.SetTrigger("RangedAttack");
+        }
+    }
+    private void SetIsFiringFalse()
+    {
+        isFiring = false;
+        m_animator.ResetTrigger("RangedAttack");
     }
 
     protected override void Block()
     {
-        m_animator.SetBool("Block", true);
+        //Debug.Log(!isAttacking && !isJumping && !isFiring && !isBlocking && !isAirAttacking);
+        if (!isAttacking && !isJumping && !isFiring && !isBlocking && !isAirAttacking)
+        {
+            isBlocking = true;
+            m_animator.SetBool("Block", true);
+        }
     }
-
     protected override void StopBlocking()
     {
+        isBlocking = false;
         m_animator.SetBool("Block", false);
     }
 
-    //COMO HACER PARA SEPARAR EL INICIO, EL MEDIO Y EL FINAL DEL SALTO CON SINGLETON. PLAYER INICIA EVENTOS? BUSCO EL RIGIDBODY DESDE AQUI? UN COLLIDER EN LOS PIES?
     protected override void Jump()
     {
-        if (!isJumping)
+        if (!isJumping && !isAttacking && !isBlocking && !isFiring && !isAirAttacking)
         {
-            m_animator.SetTrigger("Jump");
             isJumping = true;
+            m_animator.SetTrigger("Jump");
         }
     }
     private void SetIsJumpingFalse()
     {
+        m_animator.ResetTrigger("Jump");
         isJumping = false;
     }
 }

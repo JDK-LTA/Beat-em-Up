@@ -21,6 +21,9 @@ public class PlayerFire : MonoBehaviour
     }
     void Deactivate()
     {
+        Player pl = transform.parent.GetComponent<Player>();
+        pl.CanMove = true;
+        pl.IsFiring = false;
         gameObject.SetActive(false);
     }
 }

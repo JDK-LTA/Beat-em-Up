@@ -148,8 +148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 5132976015914741748, guid: 04ba991d0b5fdd74faf78ec6626afc07,
     type: 3}
-  maxHp: 100
-  currentHp: 100
+  maxHp: 15
+  currentHp: 15
   attackDmg: 5
   rangeToChase: 10
   cdAttack: 2

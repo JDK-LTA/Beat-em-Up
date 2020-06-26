@@ -262,7 +262,7 @@ MonoBehaviour:
   hpExtra: 0
   xSpeed: 3.5
   ySpeed: 2.5
-  maxXSpeed: 3
+  maxXSpeed: 10
   damageBase: 5
   fireDmg: 20
   blockBase: 50
@@ -271,6 +271,8 @@ MonoBehaviour:
   minKinEnergy: 4
   topLimit: {fileID: 0}
   bottomLimit: {fileID: 0}
+  leftLimit: {fileID: 0}
+  rightLimit: {fileID: 0}
 --- !u!114 &3924665800428444027
 MonoBehaviour:
   m_ObjectHideFlags: 0

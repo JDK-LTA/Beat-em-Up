@@ -11,8 +11,10 @@ public class ItemID
         I_SPEED_UP,
         O_INVINCIBILITY,
         O_W_PEM,
-        O_W_POISON
+        O_W_POISON,
+        O_SPEED_CHANGE
     }
+    [SerializeField] private string name = "";
     [SerializeField] private int id = -1;
     [SerializeField] private ItemType type = ItemType.I_HEALTH_UP;
 

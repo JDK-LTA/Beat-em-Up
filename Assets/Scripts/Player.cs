@@ -33,6 +33,11 @@ public class Player : MonoBehaviour
     private bool isUp = false;
     private bool isJumping = false;
     private bool isBlocking = false;
+    private bool isFiring = false;
+    private bool isAttacking = false;
+    private bool canMove = true;
+    private bool regen = false;
+    private bool onShop = false;
 
     [SerializeField] private Transform topLimit = null;
     [SerializeField] private Transform bottomLimit = null;
@@ -59,6 +64,12 @@ public class Player : MonoBehaviour
     public float YSpeed { get => ySpeed; set => ySpeed = value; }
     public float MaxXSpeed { get => maxXSpeed; set => maxXSpeed = value; }
     public float DamageBase { get => damageBase; set => damageBase = value; }
+    public bool CanMove { get => canMove; set => canMove = value; }
+    public bool IsJumping { get => isJumping; set => isJumping = value; }
+    public bool IsFiring { get => isFiring; set => isFiring = value; }
+    public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
+    public bool IsBlocking { get => isBlocking; set => isBlocking = value; }
+    public SpriteRenderer SpriteRenderer { get => spriteRenderer; set => spriteRenderer = value; }
 
     SpriteRenderer spriteRenderer;
     GameObject itemObject;
@@ -120,24 +131,50 @@ public class Player : MonoBehaviour
     {
         if (!IsOnItem)
         {
-            sword.gameObject.SetActive(true);
+            if (!isBlocking && !IsFiring && !isAttacking)
+            {
+                sword.gameObject.SetActive(true);
+                isAttacking = true;
+            }
         }
         else
         {
             ((ItemManager)ItemManager.Instance).ApplyItem(this, id);
+            isOnItem = false;
             Destroy(itemObject);
         }
     }
     private void Fire()
     {
-        fire.gameObject.SetActive(true);
+        if (!onShop)
+        {
+            if (!isJumping && !isBlocking && !isAttacking && !IsFiring)
+            {
+                canMove = false;
+                fire.gameObject.SetActive(true);
+                isFiring = true;
+            }
+        }
+        else
+        {
+            OpenShop();
+        }
+    }
+    private void OpenShop()
+    {
+
     }
     private void Block()
     {
-        isBlocking = true;
+        if (!isJumping && !IsFiring && !isAttacking && !isBlocking)
+        {
+            canMove = false;
+            isBlocking = true;
+        }
     }
     private void StopBlocking()
     {
+        canMove = true;
         isBlocking = false;
     }
 
@@ -162,40 +199,58 @@ public class Player : MonoBehaviour
     {
         if (isJumping)
         {
-            //KINETIC ENERGY CALCULATIONS
-            float kinEnergy = Mathf.Lerp(maxKinEnergy, minKinEnergy, (jumpCurrentPosY - jumpInitPosY) / (jumpMaxPosY - jumpInitPosY)) * Time.deltaTime;
+            if (canMove)
+            {
+                //KINETIC ENERGY CALCULATIONS
+                float kinEnergy = Mathf.Lerp(maxKinEnergy, minKinEnergy, (jumpCurrentPosY - jumpInitPosY) / (jumpMaxPosY - jumpInitPosY)) * Time.deltaTime;
 
-            if (jumpCurrentPosY < jumpMaxPosY && isUp)
-            {
-                transform.position = new Vector3(transform.position.x + horizontalAux, transform.position.y + kinEnergy, transform.position.z);
-            }
-            else
-            {
-                transform.position = new Vector3(transform.position.x + horizontalAux, transform.position.y - kinEnergy, transform.position.z);
-                isUp = false;
-            }
-            jumpCurrentPosY = transform.position.y;
-            //
+                if (jumpCurrentPosY < jumpMaxPosY && isUp)
+                {
+                    transform.position = new Vector3(transform.position.x + horizontalAux, transform.position.y + kinEnergy, transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(transform.position.x + horizontalAux, transform.position.y - kinEnergy, transform.position.z);
+                    isUp = false;
+                }
+                jumpCurrentPosY = transform.position.y;
+                //
 
-            //SUM THE VERTICAL OFFSET CREATED BY OUR INPUT MID-JUMP
-            if (jumpFeetInitPosY <= topLimit.position.y && jumpFeetInitPosY >= bottomLimit.position.y)
-            {
-                jumpFeetInitPosY += verticalAux;
-                jumpInitPosY += verticalAux;
-                jumpMaxPosY += verticalAux;
-            }
-            //
+                //SUM THE VERTICAL OFFSET CREATED BY OUR INPUT MID-JUMP
+                if (jumpFeetInitPosY <= topLimit.position.y && jumpFeetInitPosY >= bottomLimit.position.y)
+                {
+                    jumpFeetInitPosY += verticalAux;
+                    jumpInitPosY += verticalAux;
+                    jumpMaxPosY += verticalAux;
+                }
+                //
 
-            if (feet.position.y <= jumpFeetInitPosY)
-            {
-                isJumping = false;
-                transform.position = new Vector3(transform.position.x, jumpInitPosY, transform.position.z);
+                if (feet.position.y <= jumpFeetInitPosY)
+                {
+                    isJumping = false;
+                    transform.position = new Vector3(transform.position.x, jumpInitPosY, transform.position.z);
+                }
             }
         }
         //
         else if (horizontalAux != 0 || verticalAux != 0)
         {
-            transform.Translate(horizontalAux, verticalAux, 0);
+            if (canMove)
+            {
+                transform.Translate(horizontalAux, verticalAux, 0);
+            }
+        }
+
+        if (regen)
+        {
+            if (hpCurrent < hpMax)
+            {
+                hpCurrent += 15 * Time.deltaTime;
+            }
+            else
+            {
+                hpCurrent = hpMax;
+            }
         }
     }
 
@@ -227,6 +282,7 @@ public class Player : MonoBehaviour
     }
     private void DeactivateSword()
     {
+        isAttacking = false;
         sword.gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -242,6 +298,15 @@ public class Player : MonoBehaviour
 
             itemObject = collision.gameObject;
         }
+
+        if (collision.tag == "Regen")
+        {
+            regen = true;
+        }
+        else if (collision.tag == "Shop")
+        {
+            onShop = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -256,6 +321,15 @@ public class Player : MonoBehaviour
             }
 
             itemObject = null;
+        }
+
+        if (collision.tag == "Regen")
+        {
+            regen = false;
+        }
+        else if (collision.tag == "Shop")
+        {
+            onShop = false;
         }
     }
 }

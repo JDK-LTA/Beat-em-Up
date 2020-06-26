@@ -58,6 +58,10 @@ public class ItemManager : Singleton<ItemManager>
                 OI_W_Poison poisonItem = new OI_W_Poison(player, aux.TimeToExpire, aux.TimeBetweenWaves, aux.PoisonDamage);
                 items.Add(poisonItem);
                 break;
+            case ItemID.ItemType.O_SPEED_CHANGE:
+                OI_SpeedChange speedChangeItem = new OI_SpeedChange(player, aux.TimeToExpire, aux.Modifier);
+                items.Add(speedChangeItem);
+                break;
         }
     }
 
