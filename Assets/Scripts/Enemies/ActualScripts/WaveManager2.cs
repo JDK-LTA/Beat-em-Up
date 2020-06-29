@@ -19,6 +19,7 @@ public class WaveManager2 : Singleton<WaveManager2>
 
     bool isSpawning = true, debugStopSpawn = true, roundsStarted = false, endWaveTimerOn = false;
     float tPerSpawn = 0, tPerEndWave = 0;
+    [SerializeField] float endWaveCooldown = 5f;
     private EnemyBase2 lastEnemySpawned = null;
 
     private void Start()
@@ -50,11 +51,20 @@ public class WaveManager2 : Singleton<WaveManager2>
     }
     private void EndWave()
     {
-        endWaveTimerOn = true;
-        tPerSpawn = 0;
+        if (_currentWave < _waves.Count - 1)
+        {
+            endWaveTimerOn = true;
+            tPerSpawn = 0;
+        }
+        else
+        {
+            GameManager.Instance.EndGame(true);
+        }
     }
     public void BeginNextWave()
     {
+        endWaveTimerOn = false;
+
         _currentWave++;
         UpdateWave();
         isSpawning = true;
@@ -73,7 +83,6 @@ public class WaveManager2 : Singleton<WaveManager2>
 
         if (roundsStarted)
         {
-
             if (isSpawning)
             {
                 if (!debugStopSpawn)
@@ -92,6 +101,23 @@ public class WaveManager2 : Singleton<WaveManager2>
                 {
                     AboutToEndWave();
                 }
+            }
+            else
+            {
+                if (EnemiesManager.Instance.CreatedEnemies.Count == 0)
+                {
+                    EndWave();
+                }
+            }
+        }
+
+        if (endWaveTimerOn)
+        {
+            tPerEndWave += Time.deltaTime;
+            if (tPerEndWave >= endWaveCooldown)
+            {
+                tPerEndWave = 0;
+                BeginNextWave();
             }
         }
     }

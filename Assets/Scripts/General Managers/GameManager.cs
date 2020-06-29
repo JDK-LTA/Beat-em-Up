@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,14 +15,25 @@ public class GameManager : Singleton<GameManager>
 
     private int waveIndex = 0;
 
-    public GameObject Nexus;
+    private GameObject nexus;
+    [SerializeField] private GameObject canvasMenu;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject losePanel;
+
+    private bool gameEnded = false;
 
     [HideInInspector] public List<Player> players = new List<Player>();
+
+    public GameObject Nexus { get => nexus; set => nexus = value; }
 
     void Start()
     {
         FindPlayers();
         OnCooldownWave?.Invoke(waveIndex);
+
+        nexus = FindObjectOfType<Nexus>().gameObject;
+
+        InputManager.Instance.OnEscape += ToggleMenu;
     }
 
     public void FindPlayers()
@@ -32,31 +44,29 @@ public class GameManager : Singleton<GameManager>
             players.Add(foundPlayers[i]);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnItemTake(Player player)
     {
         OnItemTaken(player);
     }
+    public void ToggleMenu()
+    {
+        if (!gameEnded)
+        {
+            Time.timeScale = !canvasMenu.activeInHierarchy ? 0 : 1;
+            canvasMenu.SetActive(!canvasMenu.activeInHierarchy);
+        }
+    }
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
+    public void EndGame(bool win)
+    {
+        gameEnded = true;
+        Time.timeScale = 0;
 
-    //private float cdAux = 5;
-    //private void StartCooldown()
-    //{
-    //    ((AuxTimer)AuxTimer.Instance).AuxUpdate += Cooldown;
-    //}
-    //private void Cooldown(float delta)
-    //{
-    //    cdAux -= delta;
-
-    //    if (cdAux < 0)
-    //    {
-    //        OnStartWave(waveIndex);
-    //    }
-    //}
+        GameObject toBeSet = win ? winPanel : losePanel;
+        toBeSet.SetActive(true);
+    }
 }

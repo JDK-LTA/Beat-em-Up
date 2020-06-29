@@ -61,6 +61,14 @@ MonoBehaviour:
     poisonDamage: 0
     timeBetweenWaves: 0
     pemGO: {fileID: 0}
+  - name: Slow down 3secs
+    id: 20
+    type: 5
+    immediateModifier: -8
+    timeToExpire: 4
+    poisonDamage: 0
+    timeBetweenWaves: 0
+    pemGO: {fileID: 0}
   - name: Speed Up 4secs
     id: 6
     type: 5

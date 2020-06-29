@@ -7,6 +7,8 @@ public class AnimPlayerManager : AnimationManager
 {
     Animator m_animator;
     private float initXScale;
+    private float canvasInitXScale;
+    RectTransform canvas;
     Player m_player;
 
     private bool isJumping = false;
@@ -30,7 +32,10 @@ public class AnimPlayerManager : AnimationManager
         ((InputManager)InputManager.Instance).OnPlayerJump += Jump;
         ((InputManager)InputManager.Instance).OnPlayerFire += Fire;
 
+        canvas = GetComponentInChildren<Canvas>().GetComponentInChildren<RectTransform>();
+
         initXScale = transform.localScale.x;
+        canvasInitXScale = canvas.localScale.x;
     }
 
     protected override void Idle()
@@ -58,6 +63,7 @@ public class AnimPlayerManager : AnimationManager
             else
             {
                 transform.localScale = new Vector3(initXScale * axis, transform.localScale.y, transform.localScale.z);
+                canvas.localScale = new Vector3(canvasInitXScale * axis, canvas.localScale.y, canvas.localScale.z);
                 //Debug.Log("Run");
                 m_animator.SetBool("Run", true);
                 //m_animator.SetTrigger("Run");
@@ -70,7 +76,6 @@ public class AnimPlayerManager : AnimationManager
     {
         if (!m_player.IsOnItem && !isAttacking)
         {
-            Debug.Log("yikes");
             if (!isJumping)
             {
                 isAttacking = true;
@@ -96,10 +101,13 @@ public class AnimPlayerManager : AnimationManager
 
     protected void Fire()
     {
-        if (!isAttacking && !isJumping && !isBlocking && !isFiring && !isAirAttacking)
+        if (m_player.FireIsUp)
         {
-            isFiring = true;
-            m_animator.SetTrigger("RangedAttack");
+            if (!isAttacking && !isJumping && !isBlocking && !isFiring && !isAirAttacking)
+            {
+                isFiring = true;
+                m_animator.SetTrigger("RangedAttack");
+            }
         }
     }
     private void SetIsFiringFalse()

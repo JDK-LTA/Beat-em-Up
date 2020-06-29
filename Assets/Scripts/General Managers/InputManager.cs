@@ -14,6 +14,7 @@ public class InputManager : Singleton<InputManager>
     public event OnInputTrigger OnPlayerBlock;
     public event OnInputTrigger OnPlayerStopBlocking;
     public event OnInputTrigger OnPlayerJump;
+    public event OnInputTrigger OnEscape;
 
     private bool isMovingHor = false;
     private bool isMovingVer = false;
@@ -73,6 +74,11 @@ public class InputManager : Singleton<InputManager>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnPlayerJump?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnEscape?.Invoke();
         }
     }
 }

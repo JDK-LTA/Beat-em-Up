@@ -42,10 +42,24 @@ MonoBehaviour:
     - {fileID: 6142840753871003881, guid: 79c3e6c608dc4f242b8ca93e9ac72fbd, type: 3}
     - {fileID: 8160766077191892210, guid: e130be83ec1af694f965cffad5f96300, type: 3}
     cdBetweenEnemiesSpawn: 3.5
-    nOfEnemyDiffThisWave: 22
+    nOfEnemyDiffThisWave: 24
     positionsToSpawn:
     - {x: 34, y: -0.7, z: 0}
     - {x: 34, y: -2, z: 0}
     - {x: 34, y: -3.3, z: 0}
     - {x: 34, y: -4.5, z: 0}
     maxDiffChasing: 5
+  - totalDifficulty: 8
+    enemiesThisWave:
+    - {fileID: 3094784750256116688, guid: 42b8baca7a65cb64eaaed09b82ada97c, type: 3}
+    - {fileID: 6142840753871003881, guid: eb379075890415145b9f733c783f19f8, type: 3}
+    - {fileID: 8160766077191892210, guid: e130be83ec1af694f965cffad5f96300, type: 3}
+    - {fileID: 3094784750256116688, guid: 3b60cb5ee3ff9ac4fb11341d25f3558a, type: 3}
+    cdBetweenEnemiesSpawn: 3.5
+    nOfEnemyDiffThisWave: 35
+    positionsToSpawn:
+    - {x: 34, y: -0.7, z: 0}
+    - {x: 34, y: -2, z: 0}
+    - {x: 34, y: -3.3, z: 0}
+    - {x: 34, y: -4.5, z: 0}
+    maxDiffChasing: 6

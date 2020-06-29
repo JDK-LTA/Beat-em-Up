@@ -28,9 +28,9 @@ public class ItemManager : Singleton<ItemManager>
 
         for (int i = 0; i < itemList.itemList.Count; i++)
         {
-            if (id == itemList.itemList[id].Id)
+            if (id == itemList.itemList[i].Id)
             {
-                aux = itemList.itemList[id];
+                aux = itemList.itemList[i];
                 break;
             }
         }

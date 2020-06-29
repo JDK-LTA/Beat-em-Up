@@ -36,8 +36,12 @@ public class Player : MonoBehaviour
     private bool isFiring = false;
     private bool isAttacking = false;
     private bool canMove = true;
+    private bool fireIsUp = true;
     private bool regen = false;
-    private bool onShop = false;
+
+    private float tFireCd = 0;
+    [SerializeField] private float fireCd = 2f;
+    private float regenAmount = 0;
 
     [SerializeField] private Transform topLimit = null;
     [SerializeField] private Transform bottomLimit = null;
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public bool IsBlocking { get => isBlocking; set => isBlocking = value; }
     public SpriteRenderer SpriteRenderer { get => spriteRenderer; set => spriteRenderer = value; }
+    public bool FireIsUp { get => fireIsUp; }
+    public float TFireCd { get => tFireCd; set => tFireCd = value; }
 
     SpriteRenderer spriteRenderer;
     GameObject itemObject;
@@ -146,23 +152,16 @@ public class Player : MonoBehaviour
     }
     private void Fire()
     {
-        if (!onShop)
+        if (fireIsUp)
         {
             if (!isJumping && !isBlocking && !isAttacking && !IsFiring)
             {
                 canMove = false;
                 fire.gameObject.SetActive(true);
                 isFiring = true;
+                fireIsUp = false;
             }
         }
-        else
-        {
-            OpenShop();
-        }
-    }
-    private void OpenShop()
-    {
-
     }
     private void Block()
     {
@@ -245,11 +244,21 @@ public class Player : MonoBehaviour
         {
             if (hpCurrent < hpMax)
             {
-                hpCurrent += 15 * Time.deltaTime;
+                hpCurrent += regenAmount * Time.deltaTime;
             }
             else
             {
                 hpCurrent = hpMax;
+            }
+        }
+
+        if (!fireIsUp)
+        {
+            tFireCd += Time.deltaTime;
+            if (tFireCd >= fireCd)
+            {
+                tFireCd = 0;
+                fireIsUp = true;
             }
         }
     }
@@ -274,6 +283,11 @@ public class Player : MonoBehaviour
         }
 
         hpCurrent += aux;
+
+        if (hpCurrent <= 0)
+        {
+            GameManager.Instance.EndGame(false);
+        }
     }
     public void ChangeDmg(float c)
     {
@@ -299,13 +313,11 @@ public class Player : MonoBehaviour
             itemObject = collision.gameObject;
         }
 
-        if (collision.tag == "Regen")
+        RegenZone rZone = collision.GetComponent<RegenZone>();
+        if (rZone)
         {
+            regenAmount = rZone.RegenAmount;
             regen = true;
-        }
-        else if (collision.tag == "Shop")
-        {
-            onShop = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -323,13 +335,10 @@ public class Player : MonoBehaviour
             itemObject = null;
         }
 
-        if (collision.tag == "Regen")
+        RegenZone rZone = collision.GetComponent<RegenZone>();
+        if (rZone)
         {
             regen = false;
-        }
-        else if (collision.tag == "Shop")
-        {
-            onShop = false;
         }
     }
 }

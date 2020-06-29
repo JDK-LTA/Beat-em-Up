@@ -176,6 +176,9 @@ public class EnemyBase2 : MonoBehaviour
         if (!dead)
         {
             dead = true;
+            EnemiesManager.Instance.CurrDiffChasing -= difficulty;
+            EnemiesManager.Instance.CreatedEnemies.Remove(this);
+            WaveManager2.Instance.AddDifficulty(difficulty);
             animComp.SetTrigger("Die");
         }
     }

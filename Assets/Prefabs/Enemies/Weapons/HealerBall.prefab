@@ -114,9 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f49f683457e9348b4e4b56925290c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  poisonSprite: {fileID: 23767503750589005, guid: 8bc669fea8f3f0e40b814138690156bf,
-    type: 3}
+  speed: 1.5
+  specialSprite: {fileID: 0}
 --- !u!50 &406207175
 Rigidbody2D:
   serializedVersion: 4

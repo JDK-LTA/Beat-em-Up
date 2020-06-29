@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class OI_SpeedChange : OverTimeItem
 {
-    private float lastCurrentXSpeed = 0;
-    private float lastCurrentYSpeed = 0;
     private float deltaXSpeed = 0;
     private float deltaYSpeed = 0;
 
@@ -15,20 +13,21 @@ public class OI_SpeedChange : OverTimeItem
     {
         base.EnterAction();
 
-        lastCurrentYSpeed = m_player.YSpeed;
-        lastCurrentXSpeed = m_player.XSpeed;
+        float lastCurrentYSpeed = m_player.YSpeed;
+        float lastCurrentXSpeed = m_player.XSpeed;
+        float balance = m_player.YSpeed / m_player.XSpeed;
 
-        m_player.YSpeed += (m_amountToChange * (m_player.XSpeed / m_player.YSpeed));
+        m_player.YSpeed += (m_amountToChange * balance);
         m_player.XSpeed += m_amountToChange;
         if (m_player.XSpeed > m_player.MaxXSpeed)
         {
-            m_player.YSpeed = (m_player.XSpeed / m_player.YSpeed) * m_player.MaxXSpeed;
+            m_player.YSpeed = balance * m_player.MaxXSpeed;
             m_player.XSpeed = m_player.MaxXSpeed;
         }
-        else if (m_player.XSpeed < 0)
+        else if (m_player.XSpeed < 0.2)
         {
-            m_player.YSpeed = 0;
-            m_player.XSpeed = 0;
+            m_player.YSpeed = 0.2f * balance;
+            m_player.XSpeed = 0.2f;
         }
 
         deltaYSpeed = m_player.YSpeed - lastCurrentYSpeed;

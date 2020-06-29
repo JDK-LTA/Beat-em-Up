@@ -65,10 +65,15 @@ public class Arrow : MonoBehaviour
             {
                 ItemManager.Instance.ApplyItem(player, itemId.Id);
             }
+
+            Destroy(gameObject);
         }
 
-        if (!collision.GetComponent<EnemyBase2>() && !collision.GetComponent<ItemIdInScene>() && collision.tag != "Background")
+        Nexus nexus = collision.GetComponent<Nexus>();
+        if (nexus)
         {
+            nexus.DamageNexus(dmg);
+
             Destroy(gameObject);
         }
     }

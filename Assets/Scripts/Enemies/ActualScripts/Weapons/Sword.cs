@@ -20,5 +20,11 @@ public class Sword : MonoBehaviour
         {
             player.ChangeHp(-dmg);
         }
+
+        Nexus nexus = collision.GetComponent<Nexus>();
+        if (nexus)
+        {
+            nexus.DamageNexus(dmg);
+        }
     }
 }
