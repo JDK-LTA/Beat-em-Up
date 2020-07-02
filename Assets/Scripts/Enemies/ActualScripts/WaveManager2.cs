@@ -17,10 +17,12 @@ public class WaveManager2 : Singleton<WaveManager2>
     public List<WaveInfo> Waves { get => _waves; }
     public int CurrentWave { get => _currentWave; }
 
-    bool isSpawning = true, debugStopSpawn = true, roundsStarted = false, endWaveTimerOn = false;
-    float tPerSpawn = 0, tPerEndWave = 0;
-    [SerializeField] float endWaveCooldown = 5f;
+    bool isSpawning = true, debugStopSpawn = false, roundsStarted = false, endWaveTimerOn = false;
+    float tPerSpawn = 0, tPerEndWave = 0, tPerStartWaves = 0;
+    [SerializeField] float endWaveCooldown = 5f, startWavesCooldown = 3f;
     private EnemyBase2 lastEnemySpawned = null;
+
+    [SerializeField] private bool debug = false;
 
     private void Start()
     {
@@ -64,21 +66,25 @@ public class WaveManager2 : Singleton<WaveManager2>
     public void BeginNextWave()
     {
         endWaveTimerOn = false;
-
         _currentWave++;
+
+        GameManager.Instance.UpdateWaveText();
         UpdateWave();
         isSpawning = true;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (debug)
         {
-            debugStopSpawn = !debugStopSpawn;
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Init();
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                debugStopSpawn = !debugStopSpawn;
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Init();
+            }
         }
 
         if (roundsStarted)
@@ -110,15 +116,31 @@ public class WaveManager2 : Singleton<WaveManager2>
                 }
             }
         }
+        else
+        {
+            if (!debug)
+            {
+                tPerStartWaves += Time.deltaTime;
+                GameManager.Instance.WaveText.text = "Time to start first wave: " + (int)(1 + startWavesCooldown - tPerStartWaves);
+
+                if (tPerStartWaves >= startWavesCooldown)
+                {
+                    Init();
+                }
+            }
+        }
 
         if (endWaveTimerOn)
         {
             tPerEndWave += Time.deltaTime;
+            GameManager.Instance.WaveText.text = "Time to start next wave: " + (int)(1 + endWaveCooldown - tPerEndWave);
+
             if (tPerEndWave >= endWaveCooldown)
             {
                 tPerEndWave = 0;
                 BeginNextWave();
             }
+
         }
     }
 

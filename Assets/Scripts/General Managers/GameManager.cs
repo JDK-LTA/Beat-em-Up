@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -19,12 +20,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject canvasMenu;
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private Text waveText;
 
     private bool gameEnded = false;
 
     [HideInInspector] public List<Player> players = new List<Player>();
 
     public GameObject Nexus { get => nexus; set => nexus = value; }
+    public Text WaveText { get => waveText; set => waveText = value; }
 
     void Start()
     {
@@ -34,6 +37,7 @@ public class GameManager : Singleton<GameManager>
         nexus = FindObjectOfType<Nexus>().gameObject;
 
         InputManager.Instance.OnEscape += ToggleMenu;
+
     }
 
     public void FindPlayers()
@@ -69,4 +73,10 @@ public class GameManager : Singleton<GameManager>
         GameObject toBeSet = win ? winPanel : losePanel;
         toBeSet.SetActive(true);
     }
+
+    public void UpdateWaveText()
+    {
+        waveText.text = "WAVE " + (WaveManager2.Instance.CurrentWave + 1) + "/" + WaveManager2.Instance.Waves.Count;
+    }
+
 }

@@ -8,6 +8,7 @@ public class EnemyList : ScriptableObject
     public List<EnemyInfo> enemies;
 }
 
+#if UNITY_EDITOR
 public class CreateEnemyList
 {
     [MenuItem("Assets/Lists/Enemy List")]
@@ -19,3 +20,4 @@ public class CreateEnemyList
         return asset;
     }
 }
+#endif

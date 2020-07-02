@@ -242,7 +242,7 @@ MonoBehaviour:
   stoppingDistanceY: 5
   chanceForItem: 25
   itemIdsToSpawn: 02000000
-  difficulty: 2
+  difficulty: 3
   arrow: {fileID: 305795274023414871, guid: b7b3ca70c19465a4c831c98c87497f9f, type: 3}
   shootingPos: {fileID: 6142840754583255201}
   chanceToSpecialArrow: 15
