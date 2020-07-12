@@ -280,6 +280,8 @@ public class Player : MonoBehaviour
                     aux *= blockBase / 100;
                 }
             }
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.playerHit, transform.position);
+
         }
 
         hpCurrent += aux;

@@ -31,6 +31,7 @@ public class EnemyHealer2 : EnemyRanged2
         if (healing)
         {
             animComp.SetTrigger("Heal");
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.enemyHeal, transform.position);
             Heal(EnemiesManager.Instance.GetEnemiesByHp(this)[0]);
         }
         else

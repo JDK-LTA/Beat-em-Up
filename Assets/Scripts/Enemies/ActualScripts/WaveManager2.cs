@@ -11,7 +11,7 @@ public class WaveManager2 : Singleton<WaveManager2>
     private List<Vector3> _positionsToSpawn;
     private int _waveDifficulty;
     [SerializeField] private int _currentDifficulty;
-    private int _nOfEnemyDiffThisWave;
+    [SerializeField] private int _nOfEnemyDiffThisWave;
     private float _cdPerSpawn;
 
     public List<WaveInfo> Waves { get => _waves; }
@@ -103,7 +103,7 @@ public class WaveManager2 : Singleton<WaveManager2>
                         }
                     }
                 }
-                if (_nOfEnemyDiffThisWave == 0)
+                if (_nOfEnemyDiffThisWave <= 0)
                 {
                     AboutToEndWave();
                 }

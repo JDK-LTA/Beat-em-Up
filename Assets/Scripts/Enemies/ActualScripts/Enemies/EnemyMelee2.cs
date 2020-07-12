@@ -16,6 +16,7 @@ public class EnemyMelee2 : EnemyBase2
     protected override void Attack()
     {
         base.Attack();
+        AudioSource.PlayClipAtPoint(SoundManager.Instance.enemyAttack, transform.position);
 
         sword.gameObject.SetActive(true);
     }

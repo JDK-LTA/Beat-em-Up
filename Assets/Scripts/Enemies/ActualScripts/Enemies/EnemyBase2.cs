@@ -180,6 +180,7 @@ public class EnemyBase2 : MonoBehaviour
             EnemiesManager.Instance.CreatedEnemies.Remove(this);
             WaveManager2.Instance.AddDifficulty(difficulty);
             animComp.SetTrigger("Die");
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.enemyDeath, transform.position);
         }
     }
     protected virtual void DeathBehaviour()

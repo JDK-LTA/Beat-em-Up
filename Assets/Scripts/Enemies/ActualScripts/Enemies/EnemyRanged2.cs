@@ -16,6 +16,7 @@ public class EnemyRanged2 : EnemyBase2
     protected override void Attack()
     {
         base.Attack();
+        AudioSource.PlayClipAtPoint(SoundManager.Instance.enemyArrow, transform.position);
     }
 
     private void ShootArrow()

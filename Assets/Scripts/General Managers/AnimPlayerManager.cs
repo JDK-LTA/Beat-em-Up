@@ -86,6 +86,7 @@ public class AnimPlayerManager : AnimationManager
                 isAirAttacking = true;
                 m_animator.SetTrigger("JumpAttack");
             }
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.playerAttack, transform.position);
         }
     }
     private void SetIsAttackingFalse()
@@ -107,6 +108,7 @@ public class AnimPlayerManager : AnimationManager
             {
                 isFiring = true;
                 m_animator.SetTrigger("RangedAttack");
+                AudioSource.PlayClipAtPoint(SoundManager.Instance.playerFire, transform.position);
             }
         }
     }
@@ -123,6 +125,7 @@ public class AnimPlayerManager : AnimationManager
         {
             isBlocking = true;
             m_animator.SetBool("Block", true);
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.playerBlock, transform.position);
         }
     }
     protected override void StopBlocking()
@@ -137,6 +140,7 @@ public class AnimPlayerManager : AnimationManager
         {
             isJumping = true;
             m_animator.SetTrigger("Jump");
+            AudioSource.PlayClipAtPoint(SoundManager.Instance.playerJump, transform.position);
         }
     }
     private void SetIsJumpingFalse()

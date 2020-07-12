@@ -13,6 +13,7 @@ public class Nexus : MonoBehaviour
     {
         nexusHp -= dmg;
         nexusHpBar.fillAmount = nexusHp / maxNexusHp;
+        AudioSource.PlayClipAtPoint(SoundManager.Instance.nexusHit, transform.position);
 
         if (nexusHp <= 0)
         {
